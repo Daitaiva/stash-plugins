@@ -436,11 +436,10 @@ def get_template_path(scene: dict):
         if config.p_studio_templates.get(scene["studio"]["name"]):
             template["destination"] = config.p_studio_templates[scene["studio"]["name"]]
         # by Parent
-        if scene["studio"].get("parent_studio"):
-            if config.p_studio_templates.get(scene["studio"]["name"]):
-                template["destination"] = config.p_studio_templates[
-                    scene["studio"]["name"]
-                ]
+        parent_studio = scene["studio"].get("parent_studio")
+        if parent_studio:
+            if config.p_studio_templates.get(parent_studio["name"]):
+                template["destination"] = config.p_studio_templates[parent_studio["name"]]
 
     # Change by Tag
     tags = [x["name"] for x in scene["tags"]]
